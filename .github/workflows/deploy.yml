@@ -26,14 +26,8 @@ jobs:
             APP_DIR="/srv/docker/apps/ev-mobil-web"
             REPO="git@github.com:EmirGuven/ev-mobil.git"
 
-            APP_DATA_DIR="/data/ev-mobil-web/db"
-            APP_UPLOADS_DIR="/data/ev-mobil-web/uploads"
-
-            echo "📁 Preparing application directories..."
+            echo "📁 Preparing application directory..."
             mkdir -p "$APP_DIR"
-            mkdir -p "$APP_DATA_DIR"
-            mkdir -p "$APP_UPLOADS_DIR"
-
             cd "$APP_DIR"
 
             echo "📦 Checking repository..."
@@ -46,9 +40,6 @@ jobs:
               git fetch origin
               git reset --hard origin/main
             fi
-
-            export APP_DATA_DIR
-            export APP_UPLOADS_DIR
 
             echo "🐳 Building and starting containers..."
             docker compose up -d --build

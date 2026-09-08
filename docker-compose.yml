@@ -35,11 +35,8 @@ services:
       DATABASE_URL: ${DATABASE_URL}
 
     volumes:
-      - type: bind
-        source: ${APP_UPLOADS_DIR:-/data/ev-mobil-web/uploads}
-        target: /app/public/uploads
-        bind:
-          create_host_path: false
+      # Yüklenen görseller — deploy'lar arasında kalıcı Docker volume'unde tutulur.
+      - ev_mobil_uploads:/app/public/uploads
 
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>{if(r.ok)process.exit(0);else process.exit(1)}).catch(()=>process.exit(1))"]
@@ -60,3 +57,6 @@ networks:
   db_internal:
     external: true
     name: livaisitme_internal
+
+volumes:
+  ev_mobil_uploads:
