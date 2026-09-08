@@ -8,9 +8,9 @@ import {
 } from "../utils/homepage-service-icons"
 
 usePageSeo({
-  title: "Ev-Mobil | İşitme Testi ve İşitme Cihazları",
+  title: "EV-mobil | Elektrikli Araç Şarj İstasyonu Kurulum & Bakım",
   description:
-    "Ev-Mobil ile işitme testi, işitme cihazı uygulama ve ayarlama, kulak kalıbı ve teknik destek hizmetlerinden yararlanın.",
+    "EV-mobil ile AC/DC şarj istasyonu kurulumu, devreye alma, periyodik bakım, arıza servisi, 7/24 teknik destek ve mobil şarj çözümlerinden yararlanın.",
   path: "/"
 })
 

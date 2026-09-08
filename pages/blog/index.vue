@@ -9,7 +9,7 @@ const { data: posts } = await useFetch<any[]>('/api/blog')
 
 usePageSeo({
   title: blogPage.value?.heroTitle || "Blog",
-  description: blogPage.value?.heroLead || "İşitme sağlığı, işitme cihazları ve kişiye özel çözümler hakkında pratik yazıların yer aldığı blog sayfası.",
+  description: blogPage.value?.heroLead || "Elektrikli araç şarj altyapısı, istasyon kurulumu, bakım ve mobil şarj konularında pratik yazıların yer aldığı blog sayfası.",
   path: "/blog"
 })
 

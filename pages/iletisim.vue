@@ -17,8 +17,8 @@ interface ContactData {
 const { data: contact } = await useFetch<ContactData>('/api/contact')
 
 usePageSeo({
-  title: "İletişim ve Randevu Talebi – Ev-Mobil",
-  description: contact.value?.heroLead || "İşitme testi ve işitme cihazı talepleriniz için Ev-Mobil iletişim ve randevu sayfası.",
+  title: "İletişim ve Teklif Talebi – EV-mobil",
+  description: contact.value?.heroLead || "Elektrikli araç şarj istasyonu kurulumu, bakımı ve mobil şarj talepleriniz için EV-mobil iletişim ve teklif sayfası.",
   path: "/iletisim"
 })
 

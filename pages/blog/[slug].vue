@@ -81,7 +81,7 @@ usePageSeo({
       <aside class="sidebar">
         <div class="sidebar-card author-card">
           <strong>{{ authorName }}</strong>
-          <p>İşitme sağlığı ve işitme cihazlarında kişiye özel, güvenilir destek.</p>
+          <p>Elektrikli araç şarj altyapısında kurulum, bakım ve saha operasyonlarında güvenilir teknik destek.</p>
         </div>
 
         <div class="sidebar-card">

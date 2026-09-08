@@ -171,7 +171,7 @@ const aboutCtaStyle = computed(() => buildPageCtaBackgroundStyle(about.value?.ct
           </AppSmartLink>
           <AppSmartLink
             v-if="about?.ctaSecondaryLabel"
-            :to="about?.ctaSecondaryUrl || '/isitme-cihazlari'"
+            :to="about?.ctaSecondaryUrl || '/sarj-istasyonu-kurulumu'"
             class="ab-btn ab-btn--ghost"
           >
             {{ about?.ctaSecondaryLabel || 'Hizmetleri İnceleyin' }}
