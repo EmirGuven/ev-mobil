@@ -23,13 +23,13 @@ export default defineNuxtConfig({
         lang: "tr"
       },
       viewport: "width=device-width, initial-scale=1",
-      titleTemplate: "%s | Ev-Mobil"
+      titleTemplate: "%s | EV-mobil"
     }
   },
   // @ts-ignore - @nuxtjs/seo module augments this type at runtime
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || "https://www.ev-mobil.com",
-    name: "Ev-Mobil",
+    name: "EV-mobil",
     description: "Elektrikli araç şarj istasyonları için kurulum, devreye alma, bakım ve mobil şarj hizmetlerinde uzman ekibimizle yanınızdayız.",
     defaultLocale: "tr"
   },
