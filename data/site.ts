@@ -1,13 +1,13 @@
 export const siteMeta = {
-  name: "Liva İşitme",
-  titleSuffix: "Liva İşitme",
+  name: "Ev-Mobil",
+  titleSuffix: "Ev-Mobil",
   description:
-    "Liva İşitme; frigolu taşıma, kara taşımacılığı, parsiyel taşıma, banka taşımacılığı, fuar taşıma ve tıbbi cihaz taşıma alanlarında Türkiye ve Avrupa genelinde hizmet sunar.",
-  url: "https://www.gozdenakliyat.com.tr",
+    "Ev-Mobil; frigolu taşıma, kara taşımacılığı, parsiyel taşıma, banka taşımacılığı, fuar taşıma ve tıbbi cihaz taşıma alanlarında Türkiye ve Avrupa genelinde hizmet sunar.",
+  url: "https://www.ev-mobil.com.tr",
   phone: "+904663513210",
   phoneDisplay: "0 466 351 32 10",
-  email: "bilgi@gozdenakliyat.com.tr",
-  ogImage: "https://www.gozdenakliyat.com.tr/wp-content/uploads/2020/07/logo-dark.png",
+  email: "bilgi@ev-mobil.com.tr",
+  ogImage: "https://www.ev-mobil.com.tr/logo.png",
   address: {
     street: "Ortahopa Mah. Kucukal Sit. A Blok Zemin Kat No:102",
     city: "Artvin",
@@ -27,7 +27,7 @@ export const services = [
       "-26 C'ye kadar isi kontrollu, hizli ve guvenilir frigolu tasima hizmeti.",
     heroDescription:
       "Gida ve isi hassasiyeti bulunan urunlerde frigolu araclarimizla soguk zinciri koruyan planli tasima hizmeti sunuyoruz.",
-    image: "https://www.gozdenakliyat.com.tr/wp-content/uploads/2019/08/service5.png",
+    image: "https://www.ev-mobil.com.tr/service.png",
     benefits: [
       {
         title: "Isi Kontrollu Araclar",
@@ -65,7 +65,7 @@ export const services = [
       }
     ],
     seoDescription:
-      "Gozde Nakliyat ile isi kontrollu frigolu tasima, soguk zincir planlamasi ve zamaninda teslim hizmeti."
+      "Ev-Mobil ile isi kontrollu frigolu tasima, soguk zincir planlamasi ve zamaninda teslim hizmeti."
   },
   {
     slug: "kara-tasimaciligi",
@@ -74,7 +74,7 @@ export const services = [
       "Komple ve parsiyel yukler icin Turkiye ve Avrupa genelinde planli kara tasimaciligi.",
     heroDescription:
       "Kara tasimaciligi operasyonlarini zaman, guzergah ve yuk tipine gore planlayarak guvenli teslim odakli yurutup kurumsal surec disiplini sagliyoruz.",
-    image: "https://www.gozdenakliyat.com.tr/wp-content/uploads/2019/08/service5.png",
+    image: "https://www.ev-mobil.com.tr/service.png",
     benefits: [
       {
         title: "Genis Arac Filosu",
@@ -112,7 +112,7 @@ export const services = [
       }
     ],
     seoDescription:
-      "Gozde Nakliyat ile komple ve parsiyel yukler icin planli kara tasimaciligi ve guvenli teslim surecleri."
+      "Ev-Mobil ile komple ve parsiyel yukler icin planli kara tasimaciligi ve guvenli teslim surecleri."
   },
   {
     slug: "parsiyel-tasima",
@@ -121,7 +121,7 @@ export const services = [
       "Arac kapasitesini tamamen doldurmayan yukler icin ekonomik ve duzenli parsiyel tasima cozumu.",
     heroDescription:
       "Parsiyel tasimada yuklerinizi uygun hat planlamasiyla birlestiriyor, maliyet ve zaman dengesini koruyan guvenli teslim sureci olusturuyoruz.",
-    image: "https://www.gozdenakliyat.com.tr/wp-content/uploads/2019/08/service5.png",
+    image: "https://www.ev-mobil.com.tr/service.png",
     benefits: [
       {
         title: "Maliyet Avantaji",
@@ -159,7 +159,7 @@ export const services = [
       }
     ],
     seoDescription:
-      "Gozde Nakliyat ile ekonomik, planli ve duzenli cikisli parsiyel tasima hizmeti."
+      "Ev-Mobil ile ekonomik, planli ve duzenli cikisli parsiyel tasima hizmeti."
   },
   {
     slug: "banka-tasimaciligi",
@@ -168,7 +168,7 @@ export const services = [
       "Sube, ATM, arsiv ve teknik ekipmanlar icin guvenlik oncelikli banka tasimaciligi hizmeti.",
     heroDescription:
       "Banka tasimaciliginda sube ekipmani, dokuman ve operasyon malzemelerini guvenlik onceligiyle planli bicimde sevk ediyoruz.",
-    image: "https://www.gozdenakliyat.com.tr/wp-content/uploads/2019/08/service5.png",
+    image: "https://www.ev-mobil.com.tr/service.png",
     benefits: [
       {
         title: "Guvenlik Hassasiyeti",
@@ -206,7 +206,7 @@ export const services = [
       }
     ],
     seoDescription:
-      "Gozde Nakliyat ile sube, arsiv ve ekipman odakli guvenlik oncelikli banka tasimaciligi."
+      "Ev-Mobil ile sube, arsiv ve ekipman odakli guvenlik oncelikli banka tasimaciligi."
   },
   {
     slug: "fuar-tasima",
@@ -215,7 +215,7 @@ export const services = [
       "Fuar, sempozyum, konser ve etkinlik ekipmanlari icin zaman kritik tasima cozumu.",
     heroDescription:
       "Fuar ve etkinlik tasimalarinda stant, ekipman ve tanitim materyallerini kurulum takvimine uygun sekilde guvenle tasiyoruz.",
-    image: "https://www.gozdenakliyat.com.tr/wp-content/uploads/2019/08/service5.png",
+    image: "https://www.ev-mobil.com.tr/service.png",
     benefits: [
       {
         title: "Zaman Kritik Planlama",
@@ -253,7 +253,7 @@ export const services = [
       }
     ],
     seoDescription:
-      "Gozde Nakliyat ile fuar, etkinlik ve stand ekipmanlari icin zaman kritik tasima hizmeti."
+      "Ev-Mobil ile fuar, etkinlik ve stand ekipmanlari icin zaman kritik tasima hizmeti."
   },
   {
     slug: "tibbi-cihaz-tasima",
@@ -262,7 +262,7 @@ export const services = [
       "Hassas teknoloji ve medikal ekipmanlar icin kontrollu tibbi cihaz tasimaciligi.",
     heroDescription:
       "Tibbi cihaz tasimalarinda hassas ekipmanlari uygun sabitleme, dikkatli yukleme ve takip surecleriyle guvenle tasiyoruz.",
-    image: "https://www.gozdenakliyat.com.tr/wp-content/uploads/2019/08/service5.png",
+    image: "https://www.ev-mobil.com.tr/service.png",
     benefits: [
       {
         title: "Hassas Ekipman Yonetimi",
@@ -300,7 +300,7 @@ export const services = [
       }
     ],
     seoDescription:
-      "Gozde Nakliyat ile hassas medikal ekipmanlar icin kontrollu tibbi cihaz tasimaciligi hizmeti."
+      "Ev-Mobil ile hassas medikal ekipmanlar icin kontrollu tibbi cihaz tasimaciligi hizmeti."
   }
 ] as const
 
@@ -311,7 +311,7 @@ export const serviceMap = Object.fromEntries(
 export const testimonials = [
   {
     quote:
-      "Son zamanlarda aldigimiz en profesyonel hizmetlerdendi, tesekkur ederiz Gozde Nakliyat ekibi.",
+      "Son zamanlarda aldigimiz en profesyonel hizmetlerdendi, tesekkur ederiz Ev-Mobil ekibi.",
     name: "Ahmet GUR",
     role: "Satin Alma"
   },

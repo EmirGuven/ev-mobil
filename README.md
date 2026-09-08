@@ -36,13 +36,13 @@ npm run preview
 Veritabani PostgreSQL'dir (ayri bir Docker servisi/container olarak calisir, `DATABASE_URL` ile baglanilir). Yuklenen dosyalar icin bind mount kullanilir.
 
 - Uploads container yolu: `/app/public/uploads`
-- Host uploads klasoru: `/data/gozdenakliyat-web/uploads`
+- Host uploads klasoru: `/data/ev-mobil-web/uploads`
 
 `docker-compose.yml` icinde bu klasor asagidaki gibi baglanir:
 
 ```yaml
 volumes:
-	- ${APP_UPLOADS_DIR:-/data/gozdenakliyat-web/uploads}:/app/public/uploads
+	- ${APP_UPLOADS_DIR:-/data/ev-mobil-web/uploads}:/app/public/uploads
 ```
 
 PostgreSQL baglantisi `.env` icindeki `DATABASE_URL` degiskeni ile yapilir (format: `postgresql://kullanici:sifre@host:5432/veritabani`). Postgres container'i ayri calisiyorsa, web servisinin onun bulundugu Docker network'une de bagli olmasi gerekir (bkz. `docker-compose.yml` `networks` bolumu).
@@ -58,22 +58,22 @@ docker network create proxy
 2. Kalici host klasorunu olusturun:
 
 ```bash
-mkdir -p /data/gozdenakliyat-web/uploads
+mkdir -p /data/ev-mobil-web/uploads
 ```
 
 3. Klasor sahiplik/izin ayari yapin (ortama gore root veya docker kullanicisi):
 
 ```bash
-chown -R 1000:1000 /data/gozdenakliyat-web
-chmod -R 775 /data/gozdenakliyat-web
+chown -R 1000:1000 /data/ev-mobil-web
+chmod -R 775 /data/ev-mobil-web
 ```
 
 4. `.env` dosyasini hazirlayin (`docker-compose.yml` ile ayni dizinde):
 
 ```env
 ADMIN_JWT_SECRET=<uzun-ve-guclu-bir-deger>
-NUXT_PUBLIC_SITE_URL=https://gozdenakliyat.com.tr
-APP_UPLOADS_DIR=/data/gozdenakliyat-web/uploads
+NUXT_PUBLIC_SITE_URL=https://ev-mobil.com.tr
+APP_UPLOADS_DIR=/data/ev-mobil-web/uploads
 DATABASE_URL=postgresql://kullanici:sifre@host:5432/veritabani
 ```
 
@@ -95,8 +95,8 @@ curl -f http://127.0.0.1:3000/api/health
 3. Traefik + HTTPS dogrulamasi:
 
 ```bash
-curl -I https://gozdenakliyat.com.tr
-curl -I https://www.gozdenakliyat.com.tr
+curl -I https://ev-mobil.com.tr
+curl -I https://www.ev-mobil.com.tr
 ```
 
 4. Kalicilik smoke testi (recreate sonrasi):
@@ -112,7 +112,7 @@ Sunucu tarafinda veri kaybini onlemek icin kritik kurallar:
 - `.env` icindeki `APP_UPLOADS_DIR` ve `DATABASE_URL` degerleri sabit kalmali, her deployda degismemeli.
 - Host klasoru deploy oncesi var olmali. Compose dosyasi `create_host_path: false` ile calistigi icin klasor yoksa bilerek hata verir.
 - Onerilen kalici sunucu yolu:
-	- `/data/gozdenakliyat-web/uploads`
+	- `/data/ev-mobil-web/uploads`
 - PostgreSQL verisi ayri Postgres container'inin kendi volume'unde tutulur; onun yedekleme/kalicilik ayarlari bu projeden bagimsiz yonetilir.
 
 ### Backup plani
@@ -120,7 +120,7 @@ Sunucu tarafinda veri kaybini onlemek icin kritik kurallar:
 Gunluk yedek hedefi:
 
 - PostgreSQL DB: `pg_dump` ile
-- Uploads: `/data/gozdenakliyat-web/uploads`
+- Uploads: `/data/ev-mobil-web/uploads`
 
 Ornek yedek scripti:
 
@@ -129,8 +129,8 @@ Ornek yedek scripti:
 set -euo pipefail
 
 TS="$(date +%Y%m%d-%H%M%S)"
-BACKUP_ROOT="/data/backups/gozdenakliyat-web"
-UPLOADS_SRC="/data/gozdenakliyat-web/uploads"
+BACKUP_ROOT="/data/backups/ev-mobil-web"
+UPLOADS_SRC="/data/ev-mobil-web/uploads"
 
 mkdir -p "$BACKUP_ROOT"
 pg_dump "$DATABASE_URL" -F c -f "$BACKUP_ROOT/app-$TS.dump"
@@ -143,7 +143,7 @@ find "$BACKUP_ROOT" -type f -mtime +14 -delete
 Cron ornegi (her gun 03:30):
 
 ```bash
-30 3 * * * /usr/local/bin/gozde-backup.sh >> /var/log/gozde-backup.log 2>&1
+30 3 * * * /usr/local/bin/ev-mobil-backup.sh >> /var/log/ev-mobil-backup.log 2>&1
 ```
 
 ### Restore ve rollback
@@ -157,9 +157,9 @@ docker compose down
 2. DB ve uploads geri yukleyin:
 
 ```bash
-pg_restore -d "$DATABASE_URL" --clean --if-exists /data/backups/gozdenakliyat-web/app-YYYYMMDD-HHMMSS.dump
-rm -rf /data/gozdenakliyat-web/uploads/*
-tar -xzf /data/backups/gozdenakliyat-web/uploads-YYYYMMDD-HHMMSS.tar.gz -C /data/gozdenakliyat-web/uploads
+pg_restore -d "$DATABASE_URL" --clean --if-exists /data/backups/ev-mobil-web/app-YYYYMMDD-HHMMSS.dump
+rm -rf /data/ev-mobil-web/uploads/*
+tar -xzf /data/backups/ev-mobil-web/uploads-YYYYMMDD-HHMMSS.tar.gz -C /data/ev-mobil-web/uploads
 ```
 
 3. Servisi tekrar baslatin ve health kontrolu yapin:

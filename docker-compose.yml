@@ -50,10 +50,13 @@ services:
 
     networks:
       - proxy
-      - ev_mobil_internal
+      # Paylaşılan PostgreSQL container'ının bulunduğu iç network.
+      # DATABASE_URL host'u bu network üzerindeki "postgres" servis adıdır.
+      - db_internal
 
 networks:
   proxy:
     external: true
-  ev_mobil_internal:
+  db_internal:
     external: true
+    name: livaisitme_internal
