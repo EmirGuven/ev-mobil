@@ -3240,8 +3240,8 @@ h1, h2, h3, h4 {
 }
 .nh__logo-image {
   display: block;
-  max-width: min(240px, 42vw);
-  max-height: 52px;
+  max-width: min(300px, 52vw);
+  max-height: 64px;
   object-fit: contain;
 }
 .nh__logo-icon {
@@ -8135,8 +8135,8 @@ html.is-locked {
   }
 
   .nh__logo-image {
-    max-width: min(180px, 45vw);
-    max-height: 42px;
+    max-width: min(220px, 50vw);
+    max-height: 54px;
   }
 
   .nh__logo-name em,
