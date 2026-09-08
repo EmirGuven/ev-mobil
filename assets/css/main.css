@@ -6174,7 +6174,7 @@ h1, h2, h3, h4 {
   font-size: 0.82rem;
   transition: color 0.2s;
 }
-.bl-filter__clear:hover { color: #dc2626; }
+.bl-filter__clear:hover { color: var(--primary); }
 
 /* ── Featured ── */
 .bl-featured {
@@ -7826,7 +7826,7 @@ h1, h2, h3, h4 {
 
 .nh__dropdown-desc {
   font-size: 0.775rem;
-  color: #dc2626;
+  color: var(--primary);
   margin-top: 0.2rem;
   line-height: 1.35;
   font-weight: 500;
