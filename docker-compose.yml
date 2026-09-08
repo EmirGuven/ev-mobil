@@ -1,0 +1,59 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ev-mobil-web
+    restart: unless-stopped
+
+    # Traefik yönlendirmesi
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+    
+      - "traefik.http.routers.ev-mobil.rule=Host(`ev-mobil.com`) || Host(`www.ev-mobil.com`)"
+      - "traefik.http.routers.ev-mobil.entrypoints=web"
+      - "traefik.http.routers.ev-mobil.service=ev-mobil"
+    
+      - "traefik.http.routers.ev-mobil-secure.rule=Host(`ev-mobil.com`) || Host(`www.ev-mobil.com`)"
+      - "traefik.http.routers.ev-mobil-secure.entrypoints=websecure"
+      - "traefik.http.routers.ev-mobil-secure.tls=true"
+      - "traefik.http.routers.ev-mobil-secure.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.ev-mobil-secure.service=ev-mobil"
+    
+      - "traefik.http.services.ev-mobil.loadbalancer.server.port=3000"
+
+    environment:
+      NODE_ENV: production
+      HOST: "0.0.0.0"
+      PORT: "3000"
+      UPLOADS_DIR: /app/public/uploads
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-change_me_in_production_use_strong_secret}
+      NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-https://www.ev-mobil.com}
+      # PostgreSQL bağlantısı — kullanıcı adı/şifreyi burada değil,
+      # proje kökündeki .env dosyasında DATABASE_URL olarak tanımlayın.
+      DATABASE_URL: ${DATABASE_URL}
+
+    volumes:
+      - type: bind
+        source: ${APP_UPLOADS_DIR:-/data/ev-mobil-web/uploads}
+        target: /app/public/uploads
+        bind:
+          create_host_path: false
+
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>{if(r.ok)process.exit(0);else process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+    networks:
+      - proxy
+      - ev_mobil_internal
+
+networks:
+  proxy:
+    external: true
+  ev_mobil_internal:
+    external: true

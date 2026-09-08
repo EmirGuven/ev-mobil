@@ -1,0 +1,14 @@
+node_modules
+.nuxt
+.output
+.data
+dist
+.DS_Store
+.env
+
+# Yüklenen görseller (klasör yapısını koru, içeriği ignore et)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Seed verisi (gerçek admin şifre hash'i içerir, üretilen dosyadır)
+scripts/seed-data.json
