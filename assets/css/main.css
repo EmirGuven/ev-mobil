@@ -3254,6 +3254,11 @@ h1, h2, h3, h4 {
   color: var(--accent-contrast);
   flex-shrink: 0;
 }
+.nh__logo-glyph {
+  width: 64%;
+  height: 64%;
+  object-fit: contain;
+}
 .nh__logo-text {
   display: flex;
   flex-direction: column;
@@ -3515,6 +3520,11 @@ h1, h2, h3, h4 {
   background: linear-gradient(135deg, var(--gold), var(--primary-mid));
   color: var(--accent-contrast);
   flex-shrink: 0;
+}
+.sf__logo-glyph {
+  width: 64%;
+  height: 64%;
+  object-fit: contain;
 }
 .sf__logo strong {
   display: block;
