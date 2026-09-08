@@ -8,7 +8,7 @@ import {
 } from "../utils/homepage-service-icons"
 
 usePageSeo({
-  title: "EV-mobil | Elektrikli Araç Şarj İstasyonu Kurulum & Bakım",
+  title: "Elektrikli Araç Şarj İstasyonu Kurulum & Bakım",
   description:
     "EV-mobil ile AC/DC şarj istasyonu kurulumu, devreye alma, periyodik bakım, arıza servisi, 7/24 teknik destek ve mobil şarj çözümlerinden yararlanın.",
   path: "/"
