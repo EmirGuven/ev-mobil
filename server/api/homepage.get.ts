@@ -30,8 +30,10 @@ export default defineEventHandler(async () => {
       images:      heroImages,
       primaryLabel: row.hero_primary_label || "",
       primaryUrl: row.hero_primary_url || "",
+      primaryEnabled: row.hero_primary_enabled !== false,
       secondaryLabel: row.hero_secondary_label || "",
       secondaryUrl: row.hero_secondary_url || "",
+      secondaryEnabled: row.hero_secondary_enabled !== false,
     },
     accreditations: normalizeAccreditations(row.accreditations),
     about: {

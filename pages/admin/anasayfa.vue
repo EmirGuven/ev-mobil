@@ -78,20 +78,32 @@
             </div>
           </div>
           <div class="form-group">
+            <label>
+              <input v-model="form.hero_primary_enabled" type="checkbox" />
+              Birincil butonu göster
+            </label>
+          </div>
+          <div class="form-group">
             <label>Birincil Buton Metni</label>
-            <input v-model="form.hero_primary_label" type="text" placeholder="Hızlı Teklif İste" />
+            <input v-model="form.hero_primary_label" type="text" placeholder="Hızlı Teklif İste" :disabled="!form.hero_primary_enabled" />
           </div>
           <div class="form-group">
             <label>Birincil Buton Linki</label>
-            <input v-model="form.hero_primary_url" type="text" placeholder="/iletisim" />
+            <input v-model="form.hero_primary_url" type="text" placeholder="/iletisim" :disabled="!form.hero_primary_enabled" />
+          </div>
+          <div class="form-group">
+            <label>
+              <input v-model="form.hero_secondary_enabled" type="checkbox" />
+              İkincil butonu göster
+            </label>
           </div>
           <div class="form-group">
             <label>İkincil Buton Metni</label>
-            <input v-model="form.hero_secondary_label" type="text" placeholder="Kurumsal" />
+            <input v-model="form.hero_secondary_label" type="text" placeholder="Kurumsal" :disabled="!form.hero_secondary_enabled" />
           </div>
           <div class="form-group">
             <label>İkincil Buton Linki</label>
-            <input v-model="form.hero_secondary_url" type="text" placeholder="/hakkimda" />
+            <input v-model="form.hero_secondary_url" type="text" placeholder="/hakkimda" :disabled="!form.hero_secondary_enabled" />
           </div>
         </div>
       </div>
@@ -418,8 +430,10 @@ const form = reactive({
   hero_images:              [] as string[],
   hero_primary_label:       '',
   hero_primary_url:         '',
+  hero_primary_enabled:     true,
   hero_secondary_label:     '',
   hero_secondary_url:       '',
+  hero_secondary_enabled:   true,
   accreditations:           [] as { icon: string; title: string; description: string }[],
   about_eyebrow:            '',
   about_title:              '',
@@ -460,8 +474,10 @@ watch(raw, (val) => {
   form.hero_images              = Array.isArray(val.hero_images) && val.hero_images.length ? val.hero_images : (form.hero_bg_image ? [form.hero_bg_image] : [])
   form.hero_primary_label       = val.hero_primary_label       || ''
   form.hero_primary_url         = val.hero_primary_url         || ''
+  form.hero_primary_enabled     = val.hero_primary_enabled     !== false
   form.hero_secondary_label     = val.hero_secondary_label     || ''
   form.hero_secondary_url       = val.hero_secondary_url       || ''
+  form.hero_secondary_enabled   = val.hero_secondary_enabled   !== false
   form.accreditations           = Array.isArray(val.accreditations) ? val.accreditations.map((a: any) => ({
     icon: a.icon || 'shield',
     title: a.title || a.label || '',

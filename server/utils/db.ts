@@ -233,8 +233,10 @@ async function initSchema(db: Db) {
       hero_images TEXT NOT NULL DEFAULT '[]',
       hero_primary_label TEXT NOT NULL DEFAULT 'Teklif Alın',
       hero_primary_url TEXT NOT NULL DEFAULT '/iletisim',
+      hero_primary_enabled BOOLEAN NOT NULL DEFAULT TRUE,
       hero_secondary_label TEXT NOT NULL DEFAULT 'Kurumsal',
       hero_secondary_url TEXT NOT NULL DEFAULT '/hakkimda',
+      hero_secondary_enabled BOOLEAN NOT NULL DEFAULT TRUE,
       accreditations TEXT NOT NULL DEFAULT '[]',
       about_eyebrow TEXT NOT NULL DEFAULT 'Hakkımda',
       about_title TEXT NOT NULL DEFAULT '20 yılı aşkın sektör deneyimi',
@@ -628,6 +630,8 @@ async function initSchema(db: Db) {
   await db.exec("ALTER TABLE homepage ADD COLUMN IF NOT EXISTS hero_primary_url TEXT NOT NULL DEFAULT '/iletisim'")
   await db.exec("ALTER TABLE homepage ADD COLUMN IF NOT EXISTS hero_secondary_label TEXT NOT NULL DEFAULT 'Kurumsal'")
   await db.exec("ALTER TABLE homepage ADD COLUMN IF NOT EXISTS hero_secondary_url TEXT NOT NULL DEFAULT '/hakkimda'")
+  await db.exec("ALTER TABLE homepage ADD COLUMN IF NOT EXISTS hero_primary_enabled BOOLEAN NOT NULL DEFAULT TRUE")
+  await db.exec("ALTER TABLE homepage ADD COLUMN IF NOT EXISTS hero_secondary_enabled BOOLEAN NOT NULL DEFAULT TRUE")
   await db.exec("ALTER TABLE homepage ADD COLUMN IF NOT EXISTS services_bg_image TEXT NOT NULL DEFAULT ''")
   await db.exec("ALTER TABLE homepage ADD COLUMN IF NOT EXISTS cta_bg_image TEXT NOT NULL DEFAULT ''")
   await db.exec("ALTER TABLE homepage ADD COLUMN IF NOT EXISTS cta_primary_label TEXT NOT NULL DEFAULT 'Hızlı Teklif İste'")

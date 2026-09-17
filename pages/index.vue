@@ -93,8 +93,10 @@ onBeforeUnmount(() => {
 })
 const heroPrimaryLabel = computed(() => hero.value.primaryLabel || 'Randevu Al')
 const heroPrimaryUrl = computed(() => hero.value.primaryUrl || '/iletisim')
+const heroPrimaryEnabled = computed(() => hero.value.primaryEnabled !== false)
 const heroSecondaryLabel = computed(() => hero.value.secondaryLabel === '' ? '' : (hero.value.secondaryLabel || 'Kurumsal'))
 const heroSecondaryUrl = computed(() => hero.value.secondaryUrl || '/hakkimda')
+const heroSecondaryEnabled = computed(() => hero.value.secondaryEnabled !== false)
 
 const { data: blogData } = await useFetch('/api/blog')
 const recentPosts = computed(() => ((blogData.value as any) || []).slice(0, 3))
@@ -140,12 +142,12 @@ function resolveHomepageServiceSvg(icon?: string, slug?: string) {
             {{ hero.description }}
           </p>
 
-          <div class="hp-hero__actions">
-            <NuxtLink :to="heroPrimaryUrl" class="hp-hero__btn-primary">
+          <div v-if="heroPrimaryEnabled || heroSecondaryEnabled" class="hp-hero__actions">
+            <NuxtLink v-if="heroPrimaryEnabled" :to="heroPrimaryUrl" class="hp-hero__btn-primary">
               {{ heroPrimaryLabel }}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </NuxtLink>
-            <NuxtLink v-if="heroSecondaryLabel" :to="heroSecondaryUrl" class="hp-hero__btn-sec">{{ heroSecondaryLabel }} →</NuxtLink>
+            <NuxtLink v-if="heroSecondaryEnabled && heroSecondaryLabel" :to="heroSecondaryUrl" class="hp-hero__btn-sec">{{ heroSecondaryLabel }} →</NuxtLink>
           </div>
 
           <StoryBar title="Keşfet" />
