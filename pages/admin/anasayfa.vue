@@ -577,13 +577,19 @@ async function handleSave() {
   cursor: pointer;
 }
 .hero-toggle__label input[type="checkbox"] {
+  -webkit-appearance: checkbox !important;
+  appearance: checkbox !important;
   width: 16px !important;
   height: 16px !important;
+  min-width: 16px !important;
   padding: 0 !important;
   margin: 0 !important;
   border: none !important;
   border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
   accent-color: #1b4f72;
+  flex-shrink: 0;
 }
 
 .hero-image-list {
