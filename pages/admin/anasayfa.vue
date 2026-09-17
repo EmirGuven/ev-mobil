@@ -77,8 +77,8 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label>
+          <div class="form-group hero-toggle" style="grid-column:1/-1">
+            <label class="hero-toggle__label">
               <input v-model="form.hero_primary_enabled" type="checkbox" />
               Birincil butonu göster
             </label>
@@ -91,8 +91,8 @@
             <label>Birincil Buton Linki</label>
             <input v-model="form.hero_primary_url" type="text" placeholder="/iletisim" :disabled="!form.hero_primary_enabled" />
           </div>
-          <div class="form-group">
-            <label>
+          <div class="form-group hero-toggle" style="grid-column:1/-1">
+            <label class="hero-toggle__label">
               <input v-model="form.hero_secondary_enabled" type="checkbox" />
               İkincil butonu göster
             </label>
@@ -568,6 +568,24 @@ async function handleSave() {
 </script>
 
 <style scoped>
+.hero-toggle__label {
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: none !important;
+  font-size: 0.85rem !important;
+  cursor: pointer;
+}
+.hero-toggle__label input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  accent-color: #1b4f72;
+}
+
 .hero-image-list {
   display: grid;
   gap: 0.75rem;
