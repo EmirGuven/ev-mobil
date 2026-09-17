@@ -390,9 +390,19 @@ const { data: raw, pending } = await useFetch<any>('/api/admin/homepage')
 const accreditationIconOptions = [
   { value: 'shield', label: 'Kalkan / Güven' },
   { value: 'clock', label: 'Saat / Randevu' },
+  { value: 'tune', label: 'Ayarlama / Uygulama' },
+  { value: 'zap', label: 'Şimşek / Hızlı Şarj' },
+  { value: 'wrench', label: 'Anahtar / Bakım' },
+  { value: 'truck', label: 'Araç / Saha Servisi' },
+  { value: 'mappin', label: 'Konum / Kapsama' },
+  { value: 'headset', label: 'Kulaklık / Çağrı Merkezi' },
+  { value: 'battery', label: 'Batarya / Şarj Durumu' },
+  { value: 'badgecheck', label: 'Onay / Sertifika' },
+  { value: 'report', label: 'Rapor / Raporlama' },
+  { value: 'phone', label: 'Telefon / İletişim' },
+  { value: 'hardhat', label: 'Baret / Saha Desteği' },
   { value: 'ear', label: 'Kulak / İşitme Testi' },
   { value: 'device', label: 'İşitme Cihazı' },
-  { value: 'tune', label: 'Ayarlama / Uygulama' },
 ]
 const serviceIconOptions = homepageServiceIconOptions
 const heroImageUpload = ref('')
