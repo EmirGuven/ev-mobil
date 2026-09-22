@@ -22,7 +22,7 @@ function formatPost(p: any) {
     slug: p.slug,
     title: p.title,
     excerpt: p.excerpt,
-    content: p.content ? p.content.split("\n\n").filter(Boolean) : [],
+    content: p.content || '',
     category: p.category,
     tags: p.tags || '',
     quote: p.quote || '',
