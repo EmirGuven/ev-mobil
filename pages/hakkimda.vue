@@ -99,7 +99,7 @@ const aboutCtaStyle = computed(() => buildPageCtaBackgroundStyle(about.value?.ct
           </div>
           -->
           <!-- Uzmanlık alanları -->
-          <div v-if="about?.specialties?.length" class="ab-specs">
+          <!-- <div v-if="about?.specialties?.length" class="ab-specs">
             <div v-for="(sp, i) in about.specialties" :key="i" class="ab-spec">
               <div class="ab-spec__icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>
@@ -109,7 +109,7 @@ const aboutCtaStyle = computed(() => buildPageCtaBackgroundStyle(about.value?.ct
                 <span>{{ sp.desc }}</span>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
