@@ -41,11 +41,13 @@ export default defineEventHandler(async (event) => {
     const insertGroup  = db.prepare("INSERT INTO faq_groups (id, category, sort_order) VALUES (?, ?, ?)")
     const insertItem   = db.prepare("INSERT INTO faq_items (group_id, question, answer, sort_order) VALUES (?, ?, ?, ?)")
 
+    let nextGroupId = Math.max(0, ...body.map((g) => g.id ?? 0)) + 1
+
     const tx = db.transaction(async () => {
       await deleteItems.run()
       await deleteGroups.run()
       for (const [gi, g] of body.entries()) {
-        const groupId = g.id ?? (gi + 1)
+        const groupId = g.id ?? nextGroupId++
         await insertGroup.run(groupId, g.category || '', g.sort_order ?? gi)
         const items = g.items || []
         for (const [ii, item] of items.entries()) {
