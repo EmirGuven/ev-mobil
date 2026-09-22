@@ -81,7 +81,7 @@ const aboutCtaStyle = computed(() => buildPageCtaBackgroundStyle(about.value?.ct
     </section>
 
     <!-- ══════ BİYOGRAFİ ══════ -->
-    <section id="egitim" class="ab-section ab-section--light">
+    <!-- <section id="egitim" class="ab-section ab-section--light">
       <div class="container ab-bio">
         <div class="ab-bio__photo" v-if="about?.photoUrl">
           <img :src="about.photoUrl" :alt="about.heroTitle" />
@@ -91,13 +91,13 @@ const aboutCtaStyle = computed(() => buildPageCtaBackgroundStyle(about.value?.ct
           </div>
         </div>
         <div class="ab-bio__copy">
-          <!--
+          
           <span class="ab-tag">Kurumsal</span>
           <h2>{{ about?.bioTitle || 'Nasıl Çalışıyoruz?' }}</h2>
           <div class="ab-bio__paragraphs">
             <p v-for="(para, i) in about?.bioParagraphs" :key="i">{{ para }}</p>
-          </div>
-          -->
+          </div> -->
+          
           <!-- Uzmanlık alanları -->
           <!-- <div v-if="about?.specialties?.length" class="ab-specs">
             <div v-for="(sp, i) in about.specialties" :key="i" class="ab-spec">
@@ -109,10 +109,10 @@ const aboutCtaStyle = computed(() => buildPageCtaBackgroundStyle(about.value?.ct
                 <span>{{ sp.desc }}</span>
               </div>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- ══════ EĞİTİM TİMLİNE ══════ -->
     <section class="ab-section ab-section--warm">
