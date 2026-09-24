@@ -14,6 +14,8 @@ const name = computed(() => siteSettings.value?.name || siteMeta.name)
 const phone = computed(() => siteSettings.value?.phone || siteMeta.phone)
 const phoneDisplay = computed(() => siteSettings.value?.phoneDisplay || siteSettings.value?.phone || siteMeta.phoneDisplay)
 const email = computed(() => siteSettings.value?.email || siteMeta.email)
+const extraPhones = computed(() => Array.isArray(siteSettings.value?.extraPhones) ? siteSettings.value.extraPhones : [])
+const extraEmails = computed(() => Array.isArray(siteSettings.value?.extraEmails) ? siteSettings.value.extraEmails : [])
 const street = computed(() => siteSettings.value?.address?.street || siteMeta.address.street)
 const city = computed(() => siteSettings.value?.address?.city || siteMeta.address.city)
 const workingHours = computed(() => siteSettings.value?.workingHours || siteMeta.workingHours)
@@ -117,9 +119,27 @@ const serviceLinks = computed(() =>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19a19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-2.93-8.18A2 2 0 0 1 4.68 2H7.7a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91A16 16 0 0 0 14 15.85l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               <span>{{ phoneDisplay }}</span>
             </a>
+            <a
+              v-for="extraPhone in extraPhones"
+              :key="`phone-${extraPhone.number}`"
+              :href="`tel:${extraPhone.number}`"
+              class="sf__contact-item sf__contact-link"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.61 19a19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-2.93-8.18A2 2 0 0 1 4.68 2H7.7a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91A16 16 0 0 0 14 15.85l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>{{ extraPhone.display }}<template v-if="extraPhone.label"> ({{ extraPhone.label }})</template></span>
+            </a>
             <a :href="`mailto:${email}`" class="sf__contact-item sf__contact-link">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
               <span>{{ email }}</span>
+            </a>
+            <a
+              v-for="extraEmail in extraEmails"
+              :key="`email-${extraEmail.address}`"
+              :href="`mailto:${extraEmail.address}`"
+              class="sf__contact-item sf__contact-link"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>{{ extraEmail.address }}<template v-if="extraEmail.label"> ({{ extraEmail.label }})</template></span>
             </a>
             <div class="sf__contact-item">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>

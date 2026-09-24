@@ -10,8 +10,10 @@ import {
   defaultHeaderCtaUrl,
   defaultHeaderMenuItems,
   defaultLogoType,
+  parseEmailItems,
   parseFooterLinkItems,
   parseHeaderMenuItems,
+  parsePhoneItems,
 } from "../../utils/site-settings"
 import { defaultThemePaletteId } from "../../utils/theme-palettes"
 
@@ -29,6 +31,8 @@ export default defineEventHandler(async () => {
     phone: row.phone,
     phoneDisplay: row.phone_display,
     email: row.email,
+    extraPhones: parsePhoneItems(row.extra_phones),
+    extraEmails: parseEmailItems(row.extra_emails),
     address: {
       street: row.address_street,
       region: row.address_region,

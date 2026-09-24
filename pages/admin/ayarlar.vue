@@ -55,6 +55,60 @@
             <input v-model="form.working_hours" type="text" placeholder="Pzt–Cum 09:00–18:00" />
           </div>
         </div>
+
+        <h2 class="admin-form__section-title" style="margin-top:2rem;">Ek Telefon Numaraları</h2>
+        <p class="admin-form__hint">Ana telefon numarasına ek olarak gösterilecek diğer hatlar.</p>
+        <div
+          v-for="(item, index) in form.extra_phones"
+          :key="`phone-${index}`"
+          class="admin-form__repeater-row admin-form__grid"
+        >
+          <div class="form-group">
+            <label>Numara</label>
+            <input v-model="item.number" type="text" placeholder="05551234567" />
+          </div>
+          <div class="form-group">
+            <label>Görüntülenecek Metin</label>
+            <input v-model="item.display" type="text" placeholder="0555 123 45 67" />
+          </div>
+          <div class="form-group">
+            <label>Etiket (opsiyonel)</label>
+            <div class="admin-inline-group">
+              <input v-model="item.label" type="text" placeholder="Satış, Destek..." />
+              <button type="button" class="btn-admin-danger-sm" @click="form.extra_phones.splice(index, 1)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn-admin-secondary" @click="addExtraPhone">
+          Telefon Ekle
+        </button>
+
+        <h2 class="admin-form__section-title" style="margin-top:2rem;">Ek E-posta Adresleri</h2>
+        <p class="admin-form__hint">Ana e-posta adresine ek olarak gösterilecek diğer adresler.</p>
+        <div
+          v-for="(item, index) in form.extra_emails"
+          :key="`email-${index}`"
+          class="admin-form__repeater-row admin-form__grid"
+        >
+          <div class="form-group">
+            <label>E-posta</label>
+            <input v-model="item.address" type="email" placeholder="ornek@ev-mobil.com" />
+          </div>
+          <div class="form-group">
+            <label>Etiket (opsiyonel)</label>
+            <div class="admin-inline-group">
+              <input v-model="item.label" type="text" placeholder="Satış, Destek..." />
+              <button type="button" class="btn-admin-danger-sm" @click="form.extra_emails.splice(index, 1)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn-admin-secondary" @click="addExtraEmail">
+          E-posta Ekle
+        </button>
       </div>
 
       <div class="admin-tab-panel" :class="{ 'admin-tab-panel--active': activeTab === 'tema' }">
@@ -181,6 +235,7 @@
 
 <script setup lang="ts">
 import { defaultThemePaletteId, themePalettes } from "~/utils/theme-palettes"
+import { createEmailItem, createPhoneItem } from "~/utils/site-settings"
 
 definePageMeta({ layout: "admin", middleware: "admin" })
 
@@ -204,6 +259,8 @@ const form = reactive({
   phone: "",
   phone_display: "",
   email: "",
+  extra_phones: [] as ReturnType<typeof createPhoneItem>[],
+  extra_emails: [] as ReturnType<typeof createEmailItem>[],
   address_street: "",
   address_region: "",
   address_city: "",
@@ -229,6 +286,12 @@ watch(raw, (val) => {
   form.phone = val.phone || ""
   form.phone_display = val.phone_display || ""
   form.email = val.email || ""
+  form.extra_phones = Array.isArray(val.extra_phones) && val.extra_phones.length
+    ? val.extra_phones.map((item: any) => ({ ...item }))
+    : []
+  form.extra_emails = Array.isArray(val.extra_emails) && val.extra_emails.length
+    ? val.extra_emails.map((item: any) => ({ ...item }))
+    : []
   form.address_street = val.address_street || ""
   form.address_region = val.address_region || ""
   form.address_city = val.address_city || ""
@@ -245,6 +308,14 @@ watch(raw, (val) => {
   form.og_image = val.og_image || ""
   form.favicon = val.favicon || ""
 }, { immediate: true })
+
+function addExtraPhone() {
+  form.extra_phones.push(createPhoneItem())
+}
+
+function addExtraEmail() {
+  form.extra_emails.push(createEmailItem())
+}
 
 const saving = ref(false)
 const saveError = ref("")

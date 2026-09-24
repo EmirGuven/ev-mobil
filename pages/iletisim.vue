@@ -27,6 +27,8 @@ const s = useState<any>('siteSettings')
 const phone        = computed(() => s.value?.phone        || siteMeta.phone)
 const phoneDisplay = computed(() => s.value?.phoneDisplay || s.value?.phone || siteMeta.phoneDisplay)
 const email        = computed(() => contact.value?.email || s.value?.email || siteMeta.email)
+const extraPhones  = computed(() => Array.isArray(s.value?.extraPhones) ? s.value.extraPhones : [])
+const extraEmails  = computed(() => Array.isArray(s.value?.extraEmails) ? s.value.extraEmails : [])
 const mapsUrl      = computed(() => s.value?.mapsUrl      || siteMeta.mapsUrl)
 const workingHours = computed(() => s.value?.workingHours || siteMeta.workingHours)
 const street       = computed(() => s.value?.address?.street || siteMeta.address.street)
@@ -172,6 +174,11 @@ async function handleSubmit() {
               <div class="contact-info-item__body">
                 <strong>Telefon</strong>
                 <a :href="`tel:${phone}`">{{ phoneDisplay }}</a>
+                <a
+                  v-for="extraPhone in extraPhones"
+                  :key="`phone-${extraPhone.number}`"
+                  :href="`tel:${extraPhone.number}`"
+                >{{ extraPhone.display }}<template v-if="extraPhone.label"> ({{ extraPhone.label }})</template></a>
               </div>
             </li>
             <li class="contact-info-item">
@@ -181,6 +188,11 @@ async function handleSubmit() {
               <div class="contact-info-item__body">
                 <strong>E-posta</strong>
                 <a :href="`mailto:${email}`">{{ email }}</a>
+                <a
+                  v-for="extraEmail in extraEmails"
+                  :key="`email-${extraEmail.address}`"
+                  :href="`mailto:${extraEmail.address}`"
+                >{{ extraEmail.address }}<template v-if="extraEmail.label"> ({{ extraEmail.label }})</template></a>
               </div>
             </li>
             <li class="contact-info-item">

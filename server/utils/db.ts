@@ -119,6 +119,8 @@ async function initSchema(db: Db) {
       phone TEXT NOT NULL DEFAULT '',
       phone_display TEXT NOT NULL DEFAULT '',
       email TEXT NOT NULL DEFAULT '',
+      extra_phones TEXT NOT NULL DEFAULT '[]',
+      extra_emails TEXT NOT NULL DEFAULT '[]',
       address_street TEXT NOT NULL DEFAULT '',
       address_region TEXT NOT NULL DEFAULT '',
       address_city TEXT NOT NULL DEFAULT '',
@@ -335,6 +337,8 @@ async function initSchema(db: Db) {
     await db.exec("ALTER TABLE site_settings ADD COLUMN IF NOT EXISTS custom_surface_dark TEXT NOT NULL DEFAULT '#2a3347'")
     await db.exec("ALTER TABLE site_settings ADD COLUMN IF NOT EXISTS custom_accent_contrast TEXT NOT NULL DEFAULT '#1a1209'")
     await db.exec("ALTER TABLE site_settings ADD COLUMN IF NOT EXISTS favicon TEXT NOT NULL DEFAULT ''")
+    await db.exec("ALTER TABLE site_settings ADD COLUMN IF NOT EXISTS extra_phones TEXT NOT NULL DEFAULT '[]'")
+    await db.exec("ALTER TABLE site_settings ADD COLUMN IF NOT EXISTS extra_emails TEXT NOT NULL DEFAULT '[]'")
   }
 
   // Varsayılan admin kullanıcısı (şifre: admin123 — ilk girişte değiştirilmeli)

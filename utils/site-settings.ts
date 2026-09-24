@@ -10,6 +10,17 @@ export interface HeaderMenuItem extends SiteLinkItem {
   type: HeaderMenuItemType
 }
 
+export interface ContactPhoneItem {
+  label: string
+  number: string
+  display: string
+}
+
+export interface ContactEmailItem {
+  label: string
+  address: string
+}
+
 export const defaultLogoType: LogoType = "text"
 export const defaultHeaderCtaLabel = "Randevu Al"
 export const defaultHeaderCtaUrl = "/iletisim"
@@ -36,6 +47,9 @@ export const defaultFooterLegalLinks: SiteLinkItem[] = [
   { label: "Kullanım Koşulları", to: "/kullanim-kosullari" },
   { label: "KVKK", to: "/kvkk" },
 ]
+
+export const defaultExtraPhones: ContactPhoneItem[] = []
+export const defaultExtraEmails: ContactEmailItem[] = []
 
 function parseArray(value: unknown): unknown[] | null {
   if (Array.isArray(value)) return value
@@ -120,6 +134,59 @@ export function createHeaderMenuItem(type: HeaderMenuItemType = "link"): HeaderM
 
 export function createSiteLinkItem(): SiteLinkItem {
   return { label: "", to: "" }
+}
+
+function normalizePhoneItem(value: unknown): ContactPhoneItem | null {
+  if (!value || typeof value !== "object") return null
+
+  const record = value as Record<string, unknown>
+  const number = String(record.number || "").trim()
+  if (!number) return null
+  const display = String(record.display || "").trim() || number
+  const label = String(record.label || "").trim()
+
+  return { label, number, display }
+}
+
+function normalizeEmailItem(value: unknown): ContactEmailItem | null {
+  if (!value || typeof value !== "object") return null
+
+  const record = value as Record<string, unknown>
+  const address = String(record.address || "").trim()
+  if (!address) return null
+  const label = String(record.label || "").trim()
+
+  return { label, address }
+}
+
+export function parsePhoneItems(value: unknown, fallback: ContactPhoneItem[] = defaultExtraPhones) {
+  const parsed = parseArray(value)
+  if (!parsed) return fallback.map((item) => ({ ...item }))
+
+  return parsed.map(normalizePhoneItem).filter(Boolean) as ContactPhoneItem[]
+}
+
+export function parseEmailItems(value: unknown, fallback: ContactEmailItem[] = defaultExtraEmails) {
+  const parsed = parseArray(value)
+  if (!parsed) return fallback.map((item) => ({ ...item }))
+
+  return parsed.map(normalizeEmailItem).filter(Boolean) as ContactEmailItem[]
+}
+
+export function serializePhoneItems(value: unknown) {
+  return JSON.stringify(parsePhoneItems(value, []))
+}
+
+export function serializeEmailItems(value: unknown) {
+  return JSON.stringify(parseEmailItems(value, []))
+}
+
+export function createPhoneItem(): ContactPhoneItem {
+  return { label: "", number: "", display: "" }
+}
+
+export function createEmailItem(): ContactEmailItem {
+  return { label: "", address: "" }
 }
 
 export function isExternalLink(url: string) {

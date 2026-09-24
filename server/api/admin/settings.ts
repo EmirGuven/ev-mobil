@@ -1,6 +1,7 @@
 import { getDb } from "../../utils/db"
 import { verifyToken, parseCookies } from "../../utils/auth"
 import { defaultThemePaletteId } from "../../../utils/theme-palettes"
+import { parseEmailItems, parsePhoneItems, serializeEmailItems, serializePhoneItems } from "../../../utils/site-settings"
 
 const HEX_COLOR_REGEX = /^#[0-9a-f]{6}$/i
 
@@ -32,6 +33,8 @@ export default defineEventHandler(async (event) => {
       phone: row.phone || "",
       phone_display: row.phone_display || "",
       email: row.email || "",
+      extra_phones: parsePhoneItems(row.extra_phones),
+      extra_emails: parseEmailItems(row.extra_emails),
       address_street: row.address_street || "",
       address_region: row.address_region || "",
       address_city: row.address_city || "",
@@ -67,6 +70,8 @@ export default defineEventHandler(async (event) => {
         phone = ?,
         phone_display = ?,
         email = ?,
+        extra_phones = ?,
+        extra_emails = ?,
         address_street = ?,
         address_region = ?,
         address_city = ?,
@@ -90,6 +95,8 @@ export default defineEventHandler(async (event) => {
       body.phone || "",
       phoneDisplay,
       body.email || "",
+      serializePhoneItems(body.extra_phones),
+      serializeEmailItems(body.extra_emails),
       body.address_street || "",
       body.address_region || "",
       body.address_city || "",
